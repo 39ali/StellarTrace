@@ -3,20 +3,33 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #define STBI_MSC_SECURE_CRT
 #include "../vendor/stb_image_write.h"
+#include "Camera.h"
 #include "Core.h"
 #include "Hitable.h"
 #include "HitableList.h"
 #include "Math/Vector3f.h"
 #include "Ray.h"
 #include "Sphere.h"
+#include <cstdlib>
 #include <limits>
+#include <random>
 using namespace StellarTrace;
 
+vec3 random_sphere() {
+	vec3 p;
+
+	do {
+		p = 2.0*vec3(((float)std::rand() / RAND_MAX), ((float)std::rand() / RAND_MAX),
+			((float)std::rand() / RAND_MAX)) - vec3(1);
+	} while (p.length() >= 1.0);
+		return p;
+}
 vec3 color(const Ray &r, HitableList *world) {
 
   HitRecord rec;
-  if (world->Hit(r, 0.0, std::numeric_limits<float>::max(), rec)) {
-    return 0.5 * (rec.normal + 1.0);
+  if (world->Hit(r, 0.01, std::numeric_limits<float>::max(), rec)) {
+	  vec3 target = rec.position + rec.normal + random_sphere();
+	  return 0.5 *color(Ray(rec.position, target - rec.position), world);
   }
 
   vec3 dir = r.Direction.normalize();
@@ -27,26 +40,29 @@ vec3 color(const Ray &r, HitableList *world) {
 int main() {
 
   float w = 300, h = 200;
+  int samples = 4;
   uint8_t *data1 = new uint8_t[w * h * 3];
-  vec3 lowerLeftCorner(-2, -1, -1);
-  vec3 horizontal(4, 0, 0);
-  vec3 vertical(0, 2, 0);
-  vec3 origin(0);
+
   HitableList *world = new HitableList();
   world->Add(new Sphere(vec3(0, 0, -1), 0.5));
   world->Add(new Sphere(vec3(0, -100.5, -1), 100));
+  Camera cam;
 #if 1
   for (int y = 0; y < h; y++) {
     for (int x = 0; x < w; x++) {
-
+      vec3 col(0);
+      for (int s = 0; s < samples; s++) {
+        float k = ((float)std::rand() / RAND_MAX);
+        const float u = float(x + k) / w;
+        const float v = float(y + k) / h;
+        Ray r = cam.GetRay(u, v);
+        col += color(r, world);
+      }
+       col /= float(samples);
       const int pos = y * w * 3 + x * 3;
-      const float u = float(x) / w;
-      const float v = float(y) / h;
-      const Ray r(origin, lowerLeftCorner + u * horizontal + v * vertical);
-      const vec3 col = color(r, world);
-      data1[pos + 0] = uint8(255 * col.x);
-      data1[pos + 1] = uint8(255 * col.y);
-      data1[pos + 2] = uint8(255 * col.z);
+      data1[pos + 0] = uint8(255 * sqrtf( col.x));
+      data1[pos + 1] = uint8(255 * sqrtf(col.y));
+      data1[pos + 2] = uint8(255 * sqrtf(col.z));
     }
   }
 #endif

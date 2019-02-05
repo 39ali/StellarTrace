@@ -79,6 +79,7 @@
     <ClCompile Include="src\Math\Vector3f.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\Hitable.h" />
     <ClInclude Include="src\HitableList.h" />

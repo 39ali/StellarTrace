@@ -4,8 +4,8 @@
 namespace StellarTrace {
 
 struct HitRecord {
-  float t;
-  vec3 position;
+  float t; // parameter t 
+  vec3 position; // the position of the hit 
   vec3 normal;
 };
 
