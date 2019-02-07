@@ -83,12 +83,15 @@
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\Hitable.h" />
     <ClInclude Include="src\HitableList.h" />
+    <ClInclude Include="src\Lambertian.h" />
+    <ClInclude Include="src\Material.h" />
     <ClInclude Include="src\Math\Color.h" />
     <ClInclude Include="src\Math\CommonMath.h" />
     <ClInclude Include="src\Math\Matrix4f.h" />
     <ClInclude Include="src\Math\Quaternion.h" />
     <ClInclude Include="src\Math\Vector2f.h" />
     <ClInclude Include="src\Math\Vector3f.h" />
+    <ClInclude Include="src\Metal.h" />
     <ClInclude Include="src\Ray.h" />
     <ClInclude Include="src\Sphere.h" />
     <ClInclude Include="vendor\stb_image_write.h" />
