@@ -56,5 +56,6 @@ inline Vector3f Vector3f::normalize() const {
 
 inline float Vector3f::length() const { return sqrt(x * x + y * y + z * z); }
 inline Vector3f operator*(float t, const Vector3f &v) { return v * t; }
+inline Vector3f operator-(const Vector3f& v) { return Vector3f(-v.x, -v.y, -v.z); }
 using vec3 = Vector3f;
 } // namespace StellarTrace
