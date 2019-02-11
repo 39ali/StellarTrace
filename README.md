@@ -19,14 +19,14 @@ This is a CPU based multithreaded raytracer
 premake5 gmake 
 
 ```
-click here[https://github.com/premake/premake-core/wiki/Using-Premake] for refrence on how to use premake. 
+click [here](https://github.com/premake/premake-core/wiki/Using-Premake) for refrence on how to use premake. 
 
 
 
 ### Example Scene
 
-![alt text]()
-
+![alt text](https://github.com/alimilhim/StellarTrace/blob/master/IMG/1.png)
+![alt text](https://github.com/alimilhim/StellarTrace/blob/master/IMG/2.png)
 
 
 #Resources 
