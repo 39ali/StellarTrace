@@ -30,6 +30,9 @@ public:
   inline const float *operator&(void)const { return &v[0]; }
 
   inline const float operator[](unsigned int index) const { return v[index]; }
+  
+
+
 
   union {
     struct {
@@ -54,8 +57,26 @@ inline Vector3f Vector3f::normalize() const {
   return Vector3f(*this);
 }
 
+
 inline float Vector3f::length() const { return sqrt(x * x + y * y + z * z); }
 inline Vector3f operator*(float t, const Vector3f &v) { return v * t; }
 inline Vector3f operator-(const Vector3f& v) { return Vector3f(-v.x, -v.y, -v.z); }
+
 using vec3 = Vector3f;
+
+inline vec3 random_sphere() {
+	vec3 p;
+
+	do {
+		p = 2.0 * vec3(((float)std::rand() / RAND_MAX),
+			((float)std::rand() / RAND_MAX),
+			((float)std::rand() / RAND_MAX)) -
+			vec3(1);
+	} while (p.length() >= 1.0);
+	return p;
+}
+
+inline vec3 Reflect(const vec3& v, const vec3& n) {
+	return v - 2 * (n.dot(v))*n;
+}
 } // namespace StellarTrace

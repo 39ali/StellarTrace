@@ -4,14 +4,7 @@
 #include <random>
 namespace StellarTrace {
 
-vec3 random_in_unit_disk() {
-  vec3 p;
-  do {
-	  p = 2.0 * vec3(float(std::rand()) / RAND_MAX, float( std::rand()) / RAND_MAX, 0) -
-        vec3(1, 1, 0);
-  } while (p.dot(p) >= 1.0);
-  return p;
-}
+
 
 class Camera {
  public:
@@ -36,6 +29,15 @@ class Camera {
 	  vec3 offset = u * rd.x + v * rd.y;
     return Ray(Origin + offset,
                LowerLeftCorner + s * Horizontal + t * Vertical - Origin - offset);
+  }
+
+  vec3 random_in_unit_disk()const {
+	  vec3 p;
+	  do {
+		  p = 2.0 * vec3(float(std::rand()) / RAND_MAX, float(std::rand()) / RAND_MAX, 0) -
+			  vec3(1, 1, 0);
+	  } while (p.dot(p) >= 1.0);
+	  return p;
   }
   vec3 Origin;
   vec3 LowerLeftCorner;
