@@ -23,11 +23,11 @@ click [here](https://github.com/premake/premake-core/wiki/Using-Premake) for ref
 
 
 
-### Example Scene
+### Example Scenes
 
 ![alt text](https://github.com/alimilhim/StellarTrace/blob/master/IMG/1.png)
 ![alt text](https://github.com/alimilhim/StellarTrace/blob/master/IMG/2.png)
 
 
-#Resources 
+# Resources 
 [Peter Shirley's Ray Tracing in one weekend](https://github.com/petershirley/raytracinginoneweekend/).
