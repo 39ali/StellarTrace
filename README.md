@@ -11,9 +11,9 @@ This is a CPU based multithreaded raytracer
 * PreMake
 
 ### How to Build
- # windows
+ #### windows
  run build.bat file , vs solution will be generated .
- # linux 
+ #### linux 
  
 ```
 premake5 gmake 
