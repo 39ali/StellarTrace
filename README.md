@@ -4,15 +4,22 @@ This is a CPU based multithreaded raytracer
 
 
 ### Technologies:
-*c++11
+* c++11
 * Supported output formats: PNG with [STB image library](https://github.com/nothings/stb) 
 * multiThreading
 * SIMD(to be added soon)
-*PreMake
+* PreMake
 
 ### How to Build
+ # windows
+ run build.bat file , vs solution will be generated .
+ # linux 
+ 
+```
+premake5 gmake 
 
-
+```
+click here[https://github.com/premake/premake-core/wiki/Using-Premake] for refrence on how to use premake. 
 
 
 
